@@ -1,7 +1,7 @@
 import { memo, useState } from 'react';
 import styles from './NotesForm.module.css';
 
-export const NotesForm = memo(function NotesForm({ onAddNote }) {
+export const NotesForm = function NotesForm({ onAddNote }) {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [tags, setTags] = useState('');
@@ -66,4 +66,4 @@ export const NotesForm = memo(function NotesForm({ onAddNote }) {
       </button>
     </form>
   );
-});
+};

@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import styles from './Header.module.css';
 
-export const Header = memo(function Header({ notesCount }) {
+export const Header = function Header({ notesCount }) {
   return (
     <header className={styles.header}>
       <h1 className={styles.title}>
@@ -12,4 +12,4 @@ export const Header = memo(function Header({ notesCount }) {
       </div>
     </header>
   );
-});
+};

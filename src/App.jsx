@@ -10,16 +10,9 @@ const LOCAL_STARAGE_KEY = 'notes';
 
 const NotesContext = createContext();
 
-function Main() {
+function Notes() {
   const { notes, setNotes } = useContext(NotesContext);
   const [searchQuery, setSearchQuery] = useState('');
-
-  const onAddNote = useCallback(
-    (note) => {
-      setNotes([...notes, note]);
-    },
-    [notes]
-  );
 
   const filteredNotes = notes.filter(
     (note) => note.title.includes(searchQuery) || note.tags.includes(searchQuery)
@@ -37,13 +30,30 @@ function Main() {
   );
 
   return (
+    <>
+      <Search value={searchQuery} onChange={setSearchQuery} />
+      {uniqueTags.length > 0 && <TagsList tags={uniqueTags} onTagClick={onTagClick} />}
+      {filteredNotes.length > 0 && <NotesList notes={filteredNotes} setNotes={setNotes} />}
+    </>
+  );
+}
+
+function Main() {
+  const { notes, setNotes } = useContext(NotesContext);
+
+  const onAddNote = useCallback(
+    (note) => {
+      setNotes([...notes, note]);
+    },
+    [notes]
+  );
+
+  return (
     <div className={styles.app}>
       <div className={styles.container}>
         <Header notesCount={notes.length} />
         <NotesForm onAddNote={onAddNote} />
-        <Search value={searchQuery} onChange={setSearchQuery} />
-        {uniqueTags.length > 0 && <TagsList tags={uniqueTags} onTagClick={onTagClick} />}
-        {filteredNotes.length > 0 && <NotesList notes={filteredNotes} setNotes={setNotes} />}
+        <Notes />
       </div>
     </div>
   );
