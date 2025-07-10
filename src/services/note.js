@@ -3,6 +3,8 @@ const STORAGE_KEY = 'notes';
 export const NoteService = {
   setNotes(notes) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(notes));
+
+    return notes;
   },
 
   getNotes() {

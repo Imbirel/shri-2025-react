@@ -1,7 +1,7 @@
 import { Note } from '../Note/Note';
 import styles from './NotesList.module.css';
 
-export const NotesList = function ({ notes, setNotes }) {
+export const NotesList = function ({ notes }) {
   return (
     <div className={styles.notesList}>
       {notes.map((note) => (
@@ -11,9 +11,6 @@ export const NotesList = function ({ notes, setNotes }) {
           title={note.title}
           content={note.content}
           tags={note.tags}
-          onDelete={() => {
-            setNotes(notes.filter((currentNote) => currentNote.id !== note.id));
-          }}
         />
       ))}
     </div>
